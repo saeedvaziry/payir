@@ -1,5 +1,5 @@
 {
-  "name": "Pay.ir Laravel",
+  "name": "saeedvaziry/payir",
   "description": "Pay.ir Laravel Package",
   "keywords": [
     "laravel",
@@ -26,11 +26,6 @@
       "aliases": {
         "Payir": "SaeedVaziry\\Payir\\Facade"
       }
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "SaeedVaziry\\Tests\\Payir\\": "tests/"
     }
   },
   "minimum-stability": "dev",
