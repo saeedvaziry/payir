@@ -1,0 +1,38 @@
+{
+  "name": "Pay.ir Laravel",
+  "description": "Pay.ir Laravel Package",
+  "keywords": [
+    "laravel",
+    "payir",
+    "SaeedVaziry",
+    "Saeed Vaziry"
+  ],
+  "authors": [
+    {
+      "name": "Saeed Vaziry",
+      "email": "sa.vaziry@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1.3",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SaeedVaziry\\Payir\\PayirServiceProvider"
+      ],
+      "aliases": {
+        "Payir": "SaeedVaziry\\Payir\\Facade"
+      }
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SaeedVaziry\\Tests\\Payir\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
