@@ -49,7 +49,7 @@ Set your api key and redirect url in `.env` file:
             }
         }
     
-        public function callback(Request $request)
+        public function verify(Request $request)
         {
             $payir = new PayirPG();
             $payir->token = $request->token; // Pay.ir returns this token to your redirect url
