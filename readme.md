@@ -57,7 +57,7 @@ Set your api key and redirect url in `.env` file:
             try {
                 $verify = $payir->verify(); // returns verify result from pay.ir like (transId, cardNumber, ...)
     
-                print_r($verify);
+                dd($verify);
             } catch (VerifyException $e) {
                 throw $e;
             }
