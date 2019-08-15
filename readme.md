@@ -55,9 +55,9 @@ Set your api key and redirect url in `.env` file:
             $payir->token = $request->token; // Pay.ir returns this token to your redirect url
     
             try {
-                $payir->verify();
+                $verify = $payir->verify(); // returns verify result from pay.ir like (transId, cardNumber, ...)
     
-                return redirect($payir->paymentUrl);
+                print_r($verify);
             } catch (VerifyException $e) {
                 throw $e;
             }
