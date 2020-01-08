@@ -35,10 +35,10 @@ class Payir extends Facade
      * @return mixed
      * @throws SendException
      */
-    public static function send($amount, $redirect = null, $factorNumber = null, $mobile = null, $description = null)
+    public static function send($amount, $redirect = null, $factorNumber = null, $mobile = null, $description = null, $api = null)
     {
         $send = Request::make('https://pay.ir/pg/send', [
-            'api' => config('payir.api_key'),
+            'api' => $api ? $api : config('payir.api_key'),
             'redirect' => $redirect ? $redirect : url(config('payir.redirect')),
             'amount' => $amount,
             'factorNumber' => $factorNumber,
@@ -66,10 +66,10 @@ class Payir extends Facade
      * @return mixed
      * @throws VerifyException
      */
-    public static function verify($token)
+    public static function verify($token, $api = null)
     {
         $verify = Request::make('https://pay.ir/pg/verify', [
-            'api' => config('payir.api_key'),
+            'api' => $api ? $api : config('payir.api_key'),
             'token' => $token,
         ]);
         if (isset($verify['status']) && isset($verify['response'])) {
