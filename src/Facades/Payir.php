@@ -76,7 +76,7 @@ class Payir extends Facade
             $options['api'] = config('payir.api_key');
         }
         if (!isset($options['redirect'])) {
-            url(config('payir.redirect'));
+            $options['redirect'] = url(config('payir.redirect'));
         }
         $options['resellerId'] = '1000000012';
         $send = Request::make('https://pay.ir/pg/send', $options);
