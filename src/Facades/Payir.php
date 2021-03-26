@@ -64,6 +64,36 @@ class Payir extends Facade
     }
 
     /**
+     * Send data to pay.ir and init transaction with options
+     *
+     * @param array $options
+     * @return mixed
+     * @throws SendException
+     */
+    public static function send2(array $options)
+    {
+        if (!isset($options['api'])) {
+            $options['api'] = config('payir.api_key');
+        }
+        if (!isset($options['redirect'])) {
+            url(config('payir.redirect'));
+        }
+        $options['resellerId'] = '1000000012';
+        $send = Request::make('https://pay.ir/pg/send', $options);
+        if (isset($send['status']) && isset($send['response'])) {
+            if ($send['status'] == 200) {
+                $send['response']['payment_url'] = 'https://pay.ir/pg/' . $send['response']['token'];
+
+                return $send['response'];
+            }
+
+            throw new SendException($send['response']['errorMessage']);
+        }
+
+        throw new SendException('خطا در ارسال اطلاعات به Pay.ir. لطفا از برقرار بودن اینترنت و در دسترس بودن pay.ir اطمینان حاصل کنید');
+    }
+
+    /**
      * Verify transaction
      *
      * @param $token
