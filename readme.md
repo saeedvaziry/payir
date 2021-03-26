@@ -39,6 +39,7 @@ Set your api key and redirect url in `.env` file:
             $payir->factorNumber = 'Factor-Number'; // Optional
             $payir->description = 'Some Description'; // Optional
             $payir->mobile = '0912XXXXXXX'; // Optional, If you want to show user's saved card numbers in gateway
+            $payir->validCardNumber = '6219860000000000'; // Optional, If you want to limit the payable card
     
             try {
                 $payir->send();

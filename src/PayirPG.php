@@ -14,6 +14,7 @@ class PayirPG
     public $mobile;
     public $description;
     public $paymentUrl;
+    public $validCardNumber;
 
     /**
      * send
@@ -24,7 +25,7 @@ class PayirPG
     public function send()
     {
         try {
-            $send = Payir::send($this->amount, $this->redirect, $this->factorNumber, $this->mobile, $this->description);
+            $send = Payir::send($this->amount, $this->redirect, $this->factorNumber, $this->mobile, $this->description, $this->validCardNumber);
 
             $this->token = $send['token'];
             $this->paymentUrl = $send['payment_url'];

@@ -35,17 +35,21 @@ class Payir extends Facade
      * @return mixed
      * @throws SendException
      */
-    public static function send($amount, $redirect = null, $factorNumber = null, $mobile = null, $description = null, $api = null)
+    public static function send($amount, $redirect = null, $factorNumber = null, $mobile = null, $description = null, $api = null, $validCardNumber = null)
     {
-        $send = Request::make('https://pay.ir/pg/send', [
+        $data = [
             'api' => $api ? $api : config('payir.api_key'),
             'redirect' => $redirect ? $redirect : url(config('payir.redirect')),
             'amount' => $amount,
             'factorNumber' => $factorNumber,
             'mobile' => $mobile,
             'description' => $description,
-            'resellerId' => '1000000012',
-        ]);
+            'resellerId' => '1000000012'
+        ];
+        if ($validCardNumber) {
+            $data['validCardNumber'] = $validCardNumber;
+        }
+        $send = Request::make('https://pay.ir/pg/send', $data);
         if (isset($send['status']) && isset($send['response'])) {
             if ($send['status'] == 200) {
                 $send['response']['payment_url'] = 'https://pay.ir/pg/' . $send['response']['token'];
