@@ -1,3 +1,7 @@
+**⚠️ This repository is archived and is not maintained anymore.**
+
+Please consider using [Pay.ir PHP SDK](https://github.com/paydotir/php-sdk) instead
+
 # Pay.ir Laravel
 
 Laravel package to connect to Pay.ir Payment Gateway
